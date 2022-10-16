@@ -1,12 +1,42 @@
 {
-  "name": "node-ejs",
+  "name": "ejs",
   "main": "server.js",
   "scripts": {
     "test": "ech0 \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "devStart": "nodemon server.js"
   },
   "dependencies": {
+    "async": "^3.2.4",
+    "bcrypt": "^5.1.0",
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^10.0.0",
     "ejs": "^3.1.5",
-    "express": "^4.17.1"
-  }
+    "express": "^4.18.2",
+    "express-flash": "^0.0.2",
+    "express-session": "^1.17.3",
+    "jsonwebtoken": "^8.5.1",
+    "method-override": "^3.0.0",
+    "mysql": "^2.10.2",
+    "nodemon": "^2.0.7",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0"
+  },
+  "description": "",
+  "version": "1.0.0",
+  "devDependencies": {
+    "dotenv": "^16.0.3",
+    "nodemon": "^2.0.20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chandraharshitha/Myassignment-.git"
+  },
+  "author": "chandraharshitha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chandraharshitha/Myassignment-/issues"
+  },
+  "homepage": "https://github.com/chandraharshitha/Myassignment-#readme"
 }
