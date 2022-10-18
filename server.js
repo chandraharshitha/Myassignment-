@@ -5,12 +5,11 @@ const mysql = require("mysql");
 const app = express();
 var session = require('express-session');
 var flash = require('express-flash');
-const dotenv = require("dotenv");
+const dotenv = require("dotenv").config();
 const cookieParser = require("cookie-parser");
 var bodyParser = require('body-parser');
 const PORT = process.env.PORT || 5000
 // third party 
-dotenv.config();
 
 app.use(session({ cookie: { maxAge: 60000 }, 
     secret: 'woot',
