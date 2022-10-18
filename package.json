@@ -3,7 +3,7 @@
   "main": "server.js",
   "scripts": {
     "test": "ech0 \"Error: no test specified\" && exit 1",
-    "devStart": "nodemon server.js"
+    "devStart": "node server.js"
   },
   "dependencies": {
     "async": "^3.2.4",
