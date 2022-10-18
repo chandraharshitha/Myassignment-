@@ -9,20 +9,21 @@ const db = mysql.createConnection({
     password: process.env.PASSWORD,
     database: process.env.DATABASE
 });
-exports.login = async (req, res) => {
+exports.login = async (req, res,next) => {
     try {
-        const { email, password } = req.body;
+        const  password  = req.body.password;
+        const email =req.body.email
         if (!email || !password) {
-            return res.status(400). res.render('pages/signup', {
+            return  res.render('pages/signup', {
                 message: "Please Provide an email and password"
-            })
+            });
         }
         db.query('SELECT * FROM users WHERE email = ?', [email], async (err, results) => {
             console.log(results);
             if (!results || !await bcrypt.compare(password, results[0].password)) {
                 res.status(401).render('pages/login', {
                     message: 'Email or Password is incorrect'
-                })
+                });
             }
              else {
                 const id = results[0].id;
@@ -40,30 +41,39 @@ exports.login = async (req, res) => {
                     httpOnly: true
                 }
                 res.cookie('userSave', token, cookieOptions);
-                res.status(200).redirect("/");
+                res.status(200).redirect("/business");
             }
-        })
+        });
     } catch (err) {
         console.log(err);
     }
 }
 exports.register = (req, res) => {
-    console.log('req.body')
+    req.assert('name', 'Name is required').notEmpty()        //Validate name
+    req.assert('email', 'A valid email is required').isEmail()  //Validate email
+    req.assert('email', 'A valid email is required').notEmpty()  //Validate email
+
+    
+    console.log('req.1');
     console.log(req.body);
     const { name, email, password, passwordConfirm } = req.body;
     db.query('SELECT email from  users WHERE email = ?', [email], async (err, results) => {
         if (err) {
             console.log(err);
+            console.log('req.body1');
+
         } else {
             if (results.length > 0) {
+                console.log('req.body2');
+
                 return res.render('pages/signup', {
                     message: 'The email is already in use'
-                })
+                });
             } else if (password != passwordConfirm) {
                 return res.render('pages/signup', {
                     message: 'Password dont match'
                 });
-            }
+            } 
         }
 
         let hashedPassword = await bcrypt.hash(password, 8);
@@ -73,13 +83,13 @@ exports.register = (req, res) => {
             if (err) {
                 console.log(err);
             } else {
-                return res.sendFile(__dirname + "request.html", {
+                return res.render('pages/bussn', {
                     message: 'User registered'
                 });
             }
-        })
-    })
-    res.render('pages/login');
+        });
+    });
+    res.redirect('/business');
 }
 
 exports.isLoggedIn = async (req, res, next) => {
@@ -106,6 +116,7 @@ exports.isLoggedIn = async (req, res, next) => {
         }
     } else {
         next();
+        return res.redirect('/')
     }
 }
 exports.logout = (req, res) => {

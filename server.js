@@ -4,9 +4,10 @@ const path = require("path")
 const mysql = require("mysql");
 const app = express();
 var session = require('express-session');
-var flash    = require('connect-flash');
+var flash = require('express-flash');
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
+var bodyParser = require('body-parser');
 const PORT = process.env.PORT || 5000
 // third party 
 dotenv.config();
@@ -89,7 +90,9 @@ app.set('view engine', 'ejs');
 // app.get('/conterv', function(req, res) {
 //     res.render('pages/contactservices');
 // });
+
 app.use('/', require('./routes/pages'));
+
 app.use('/auth', require('./routes/auth'));
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 console.log('8080 is the magic port');

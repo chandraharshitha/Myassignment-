@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+</head>
+
+<body class="container">
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+<div>
+<a href="/profile" class="btn btn-primary ml-3">Home</a>  
+<a href="/add" class="btn btn-secondary ml-3">New Customer</a> 
+<a href="/business" class="btn btn-info ml-3">Customer List</a>
+</div>    
+<% if (messages.success) { %>
+    <p class="alert alert-success mt-4"><%- messages.success %></p>
+    <% } %> 
+<br>
+<table class="table">
+<thead>
+<tr>
+<th scope="col">#</th>
+<th scope="col">id</th>
+
+<th scope="col">customer Name</th>
+<th scope="col">customer Email</th>
+<th scope="col">customer Number</th>
+
+<th width="200px">Action</th>
+</tr>
+</thead>
+<tbody>
+<% if(data.length){
+for(var i = 0; i< data.length; i++) {%>  
+<tr>
+<th scope="row"><%= (i+1) %></th>
+<td><%= data[i].id%></td>
+
+<td><%= data[i].name%></td>
+<td><%= data[i].email%></td>
+<td><%= data[i].number%></td>
+
+<td>
+<a class="btn btn-success edit" href="/edit/<%=data[i].id%>">Edit</a>                       
+<a class="btn btn-danger delete" onclick="return alert('Are You sure?')" href="/delete/<%=data[i].id%>">Delete</a>                       
+</td>
+</tr>
+<% }
+}else{ %>
+<tr>
+<td colspan="3">No user</td>
+</tr>
+<% } %>    
+</tbody>
+</table>
+</body>
+</html>

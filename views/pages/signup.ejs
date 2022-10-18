@@ -9,6 +9,9 @@
     <%- include('../partials/header'); %>
 </header>
 
+    
+
+
 <main>
    
   <section class="vh-100 bg-image"
@@ -21,28 +24,30 @@
             <div class="card-body p-5">
               <h2 class="text-uppercase text-center mb-5">Create an account</h2>
            
-                <div class="alert alert-danger"><%= message %></div>
-           
+              <% if (message.length > 0) { %>
+                <div class="alert alert-danger"> <%=message %> </div>
+            <% } %>
+        
               <form action="/auth/register" method="POST">
 
                 <div class="form-outline mb-4">
                   <label for="name" class="form-label">Name</label>
-                  <input type="text" class="form-control" id="name" name="name">
+                  <input type="text" class="form-control" id="name" name="name" required>
               </div>
 
                 <div class="form-outline mb-4">
                   <label for="email" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email">
+                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" required>
                         <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                     </div>
 
                 <div class="form-outline mb-4">
                   <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" name="password">
+                        <input type="password" class="form-control" id="password" name="password" required>
                     </div>
                     <div class="form-outline mb-4">
                       <label for="passwordConfirm" class="form-label">Confirm Password</label>
-                      <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm">
+                      <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" required>
                   </div>
 
               
