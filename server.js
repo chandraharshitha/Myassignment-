@@ -27,7 +27,8 @@ const db = mysql.createConnection({
     host: process.env.HOST,
     user: process.env.DATABASE_USER,
     password: process.env.PASSWORD,
-    database: process.env.DATABASE
+    database: process.env.DATABASE,
+    socketPath: '/myapp/run/mysqld/mysqld.sock'
 });
 
 db.connect((err) => {
