@@ -11,7 +11,7 @@ var bodyParser = require('body-parser');
 const PORT = process.env.PORT || 5000
 // third party 
 
-app.use(session({ cookie: { maxAge: 60000 }, 
+app.use(session({ cookie: { maxAge: 6000 }, 
     secret: 'woot',
     resave: false, 
     saveUninitialized: false}));
@@ -27,7 +27,8 @@ const db = mysql.createConnection({
     host: process.env.HOST,
     user: process.env.DATABASE_USER,
     password: process.env.PASSWORD,
-    database: process.env.DATABASE
+    database: process.env.DATABASE,
+    debug: false
 });
 
 db.connect((err) => {

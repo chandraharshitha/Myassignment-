@@ -8,6 +8,7 @@ const db = mysql.createConnection({
     user: process.env.DATABASE_USER,
     password: process.env.PASSWORD,
     database: process.env.DATABASE,
+    debug: false
 });
 exports.login = async (req, res,next) => {
     try {
