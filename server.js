@@ -94,5 +94,7 @@ app.set('view engine', 'ejs');
 app.use('/', require('./routes/pages'));
 
 app.use('/auth', require('./routes/auth'));
-app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
-console.log('8080 is the magic port');
+let port=process.env.PORT||4000
+app.listen(port, () => {
+    console.log(`App running on port ${port} `);
+});
